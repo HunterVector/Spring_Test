@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: eureka-provider
+    
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://139.196.191.83:3306/CC?servcerTimezone=GMT
+#    username: test01
+#    password: Test01123
+    url: jdbc:mysql://139.196.191.83:3306/TCC?servcerTimezone=GMT
+    username: test02
+    password: Test02123
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+logging:
+  config: classpath:logback-test.xml
+
+server:
+  port: 8020
+  address: 0.0.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    
+
+ribbon:
+  ConnectTimeout: 20000
+  ReadTimeout: 20000

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.FileInfoMapper">
+    
+    
+    <select id="getFileInfoById" resultType="model.FileInfoDto">
+        SELECT  a.file_id, a.file_state, a.file_name
+        FROM file_info a
+        where a.file_state = 'A'
+        and a.file_id = #{fileId}
+    </select>
+    
+    <insert id="addFileInfo" parameterType="model.FileInfoDto">
+        insert into file_info(file_id, file_state, file_name)
+        values (#{fileId}, #{fileState}, #{fileName})
+    </insert>
+    
+    <update id="delFileInfoById">
+        update file_info a
+        set a.file_state = 'X'
+        where a.file_id = #{fileId}
+    </update>
+</mapper>

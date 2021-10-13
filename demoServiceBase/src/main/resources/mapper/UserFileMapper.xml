@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.UserFileMapper">
+    <!--
+    <resultMap id="userInfoMap" type="model.UserInfoDto">
+        <id column="USER_ID" jdbcType="DECIMAL" property="userId"/>
+        <result column="USER_STATE" jdbcType="VARCHAR" property="userState"/>
+        <result column="USER_NAME" jdbcType="VARCHAR" property="userName"/>
+        <result column="USER_CODE" jdbcType="VARCHAR" property="userCode"/>
+        <result column="USER_PASS" jdbcType="VARCHAR" property="userPass"/>
+    </resultMap>
+    -->
+    
+    
+    <select id="getUserFileById" resultType="model.UserFileDto">
+        SELECT  a.user_id, a.file_id
+        FROM user_file a
+        where a.user_id = #{userId}
+    </select>
+    
+    <insert id="addUserFile" parameterType="model.UserFileDto">
+        insert into user_file(user_id, file_id)
+        values(#{userId}, #{fileId})
+    </insert>
+    
+    <delete id="deleteUserFileById">
+        delete from user_file a 
+        where a.user_id = #{userId}
+        and a.file_id = #{fileId}
+    </delete>
+</mapper>
